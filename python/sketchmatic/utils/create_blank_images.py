@@ -1,25 +1,41 @@
 import argparse
+from pathlib import Path
+import cv2 as cv
+import numpy as np
 
 def main():
   parser = argparse.ArgumentParser()
-  parser.add_argument("width", type=int)
-  parser.add_argument("height", type=int)
-  parser.add_argument("count", type=int)
-  parser.add_argument("start", type=int)
-  parser.add_argument("stop", type=int)
-  parser.add_argument("output", type=str)
+  parser.add_argument("-o", "--output", type=str, required=True, help="Output directory")
+  parser.add_argument("-p", "--prefix", type=str, default="image", help="Prefix for the image name, default: %(default)s")
+
+  parser.add_argument("-x", "--width", type=int, default=500, help="Width of the image, default: %(default)s")
+  parser.add_argument("-y", "--height", type=int, default=500, help="Height of the image, default: %(default)s")
+
+
+  parser.add_argument("-s", "--start", type=int, default=0, help="Number of images to create")
+
+  groupA = parser.add_mutually_exclusive_group(required=True)
+  groupA.add_argument("-c", "--count", type=int, default=100, help="Number of images to create")
+
+  groupB = parser.add_mutually_exclusive_group(required=True)
+  groupB.add_argument("-S", "--stop", type=int,  help="Last image to create")
+  
+
   args = parser.parse_args()
+  
+  output = Path(args.output)
+  prefix = args.prefix
+  width = args.width
+  height = args.height
+  start = args.start
+  stop = args.stop if args.stop else args.start + args.count
 
-  from PIL import Image
-  from pathlib import Path
-  import numpy as np
+  output.mkdir(parents=True, exist_ok=True)
 
-  output_dir = Path(args.output)
-  output_dir.mkdir(parents=True, exist_ok=True)
+  for i in range(start, stop):
+    image = np.zeros((height, width, 3), np.uint8)
+    cv2.imwrite(str(output / f"{prefix}_{i:4}.png"), image)
 
-  for i in range(args.count):
-    image = Image.fromarray(np.zeros((args.height, args.width, 3), dtype=np.uint8))
-    image.save(output_dir / f"{i}.png")
 
 if __name__ == "__main__":
   main()

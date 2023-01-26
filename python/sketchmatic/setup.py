@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 
 REQUIRES = [
+  # CLI
+  # Processing
   "opencv-python",
   "numpy",
   "matplotlib",
