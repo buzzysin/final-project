@@ -1,0 +1,66 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cite}
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[top=1in,bottom=1in,left=1.14in,right=1.14in]{geometry}
+\usepackage[]{blindtext}
+\usepackage{listings}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{multirow}
+
+% 
+\author{Taharka Okai}
+\date{\today}
+
+% Settings
+\setlist[itemize]{nosep,topsep=0pt}
+\setlist[enumerate]{nosep,topsep=0pt}
+
+% Commands
+
+\let\stdsection\section
+\newcommand{\enablebreaksections}{
+  \renewcommand{\section}{\clearpage\stdsection}
+}
+\newcommand{\disablebreaksections}{
+  \renewcommand{\section}{\stdsection}
+}
+\makeatletter
+\renewcommand\paragraph{%
+  \@startsection{paragraph}{4}{0mm}%
+  {-\baselineskip}%
+  {0.5\baselineskip}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\newcommand{\placeholder}[2]{
+  \begin{#1}[!htbp]
+  \centering
+  \ifcsname draftmode\endcsname
+    \includegraphics[draft,width=0.3\textwidth]{some-placeholder.png}
+  \fi
+  \caption{\textbf{Placeholder: }#2}
+  \label{placeholder:#2}
+  \end{#1}
+}
+
+\newcommand{\paraphrase}[1]{`#1'}
+
+\newcommand{\dash}{—~}
+
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+
+\newcommand{\tableref}[1]{\tablename~\ref{#1}}
+\newcommand{\figref}[1]{\figurename~\ref{#1}}

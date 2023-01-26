@@ -1,0 +1,19 @@
+# Ignore venv
+venv
+
+# Ignore latex build
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.dvi
+!*.pdf
+*.gz
+*.synctex.*
+
+# Ignore python cache
+__pycache__
