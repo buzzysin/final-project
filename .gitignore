@@ -1,6 +1,13 @@
 # Ignore venv
 venv
 
+# Ignore python build
+*.egg-info
+*.egg
+build
+dist
+
+
 # Ignore latex build
 *.aux
 *.log

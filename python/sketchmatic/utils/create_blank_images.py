@@ -12,29 +12,29 @@ def main():
   parser.add_argument("-y", "--height", type=int, default=500, help="Height of the image, default: %(default)s")
 
 
-  parser.add_argument("-s", "--start", type=int, default=0, help="Number of images to create")
+  parser.add_argument("-s", "--start", type=int, default=0, help="Start index of images to create")
 
   groupA = parser.add_mutually_exclusive_group(required=True)
-  groupA.add_argument("-c", "--count", type=int, default=100, help="Number of images to create")
-
-  groupB = parser.add_mutually_exclusive_group(required=True)
-  groupB.add_argument("-S", "--stop", type=int,  help="Last image to create")
+  groupA.add_argument("-c", "--count", type=int, default=10, help="Number of images to create")
+  groupA.add_argument("-S", "--stop", type=int,  help="Last image to create")
   
 
   args = parser.parse_args()
   
   output = Path(args.output)
-  prefix = args.prefix
-  width = args.width
-  height = args.height
-  start = args.start
-  stop = args.stop if args.stop else args.start + args.count
+  prefix: str = args.prefix
+  width: int = args.width
+  height: int = args.height
+  start: int = args.start
+  stop: int = args.stop if args.stop else args.start + args.count
 
   output.mkdir(parents=True, exist_ok=True)
 
   for i in range(start, stop):
-    image = np.zeros((height, width, 3), np.uint8)
-    cv2.imwrite(str(output / f"{prefix}_{i:4}.png"), image)
+    image = np.ones((height, width, 3), np.uint8) * 255
+    image[i // width, i % width] = [0, 0, 0]
+    image[i % width, i // width] = [0, 0, 0]
+    cv.imwrite(str(output / f"{prefix}_{i:03}.png"), image)
 
 
 if __name__ == "__main__":
