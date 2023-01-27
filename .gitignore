@@ -24,3 +24,7 @@ dist
 
 # Ignore python cache
 __pycache__
+
+
+# Ignore dataset data
+data/*.png
