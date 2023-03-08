@@ -27,3 +27,28 @@ __pycache__
 # Ignore dataset data
 *.{png,jpg,jpeg,gif,webm,zip,csv,txt}
 !documents/*.{png,jpg,jpeg,gif,webm,zip,csv,txt}
+
+# YOLO
+**/runs
+*.pt
+best.pt
+
+# RoboFlow
+
+# non-standard, but hey, why not
+roboflow.txt 
+
+*.labels.*
+*.dataset.*
+*.roboflow.*
+
+**/test
+**/train
+**/valid
+
+# Ignore comet_ml
+comet_ml.json
+.comet.config
+
+# 
+*.code-workspace
