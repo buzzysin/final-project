@@ -1,0 +1,15 @@
+path: ../datasets/circuits
+
+train: ./train/images
+val: ./valid/images
+test: ./test/images
+
+nc: 4
+names: ['dcvs', 'gnd', 'junction', 'res']
+
+roboflow:
+  workspace: finalyearproject-yoya7
+  project: finalyearproject-wi2jl
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/finalyearproject-yoya7/finalyearproject-wi2jl/dataset/1
