@@ -21,5 +21,9 @@ dist
 # Ignore python cache
 __pycache__
 
+# Jupyter notebook
+.ipynb_checkpoints
+
 # Ignore dataset data
-data/*.png
+*.{png,jpg,jpeg,gif,webm,zip,csv,txt}
+!documents/*.{png,jpg,jpeg,gif,webm,zip,csv,txt}
