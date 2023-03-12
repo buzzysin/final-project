@@ -1,16 +1,50 @@
-% !TEX program = xelatex
+% !TEX program = lualatex
 
-\documentclass[draft]{beamer}
+\documentclass{beamer}
 
 \input{poster-preamble.tex}
 
-\title[short title]{title}
-\author[short author names]{author names}
-\institute[short institute names]{institute names}
 \date{\today}
 
 \begin{document}
-\begin{frame}
 
+\begin{frame}[t]
+  \begin{columns}[t]
+
+    \separatorcolumn
+
+    \begin{column}{\colwidth-0.5\midspace}
+      \begin{block}{Project Background}
+
+      \end{block}
+
+
+      \begin{block}{Project Outcome}
+      \end{block}
+
+
+      \begin{block}{Existing Solutions}
+      \end{block}
+    \end{column}
+
+    \separatorcolumn
+
+    \begin{column}{\colwidth-0.5\midspace}
+      \begin{block}{Methodology}
+      \end{block}
+    \end{column}
+
+    \separatorcolumn
+
+    \begin{column}{\colwidth-0.5\midspace}
+      \begin{block}{Findings}
+      \end{block}
+
+      \begin{block}{Further Work}
+      \end{block}
+    \end{column}
+
+  \end{columns}
 \end{frame}
+
 \end{document}
