@@ -1,4 +1,4 @@
 {
   "python.analysis.typeCheckingMode": "basic",
-  "latex-workshop.latex.build.forceRecipeUsage": false
+  "latex-workshop.latex.build.forceRecipeUsage": false,
 }

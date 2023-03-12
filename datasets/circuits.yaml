@@ -1,0 +1,20 @@
+names:
+  - dcvs
+  - gnd
+  - junction
+  - res
+
+nc: 4
+
+path: ../data/circuits
+
+test: ./test
+train: ./train
+val: ./valid
+
+roboflow:
+  license: CC BY 4.0
+  project: finalyearproject-wi2jl
+  url: https://universe.roboflow.com/finalyearproject-yoya7/finalyearproject-wi2jl/dataset/2
+  version: 2
+  workspace: finalyearproject-yoya7

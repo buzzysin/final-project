@@ -25,6 +25,7 @@ __pycache__
 .ipynb_checkpoints
 
 # Ignore dataset data
+*.{png,jpg,jpeg,gif,webm,zip,csv,txt,mp4}
 **/*.{png,jpg,jpeg,gif,webm,zip,csv,txt,mp4}
 !documents/*.{png,jpg,jpeg,gif,webm,zip,csv,txt,mp4}
 
