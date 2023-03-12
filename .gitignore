@@ -52,3 +52,7 @@ comet_ml.json
 
 # 
 *.code-workspace
+.*
+!.gitignore
+!.gitkeep
+!.vscode
