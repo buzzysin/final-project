@@ -1,3 +1,5 @@
+% !TEX root = poster.tex
+
 % \graphicspath{{./graphics/}}
 
 % ====================
@@ -7,7 +9,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 % \usepackage[size=a4,scale=1.1]{beamerposter}
-\usepackage[size=a1,scale=1.0]{beamerposter}
+\usepackage[size=a1,scale=1.1]{beamerposter}
 % \usepackage[size=custom,height=100,width=70.71,scale=1.2]{beamerposter}
 % \usepackage[size=a4,scale=1.0,orientation=landscape]{beamerposter}
 
@@ -24,6 +26,7 @@
 % \usepackage{enumerate}
 % \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{subcaption}
 \captionsetup{font=normalsize}
 % ====================
 % Lengths
@@ -50,11 +53,19 @@
 % Title
 % ====================
 
-\title{Software Interface Design for a Full-Duplex Embedded System}
+\title{Designing a Sketch Based Interface for Electronic Circuit Simulation}
 
-\author{\textbf{Student:} Taharka Okai}
+\author{
+  \textbf{Student:} Taharka Okai, zp19374@bristol.ac.uk,
+  % \\[1ex]
+  % \hspace{3.3ex}
+  \textbf{Supervisor:} Dr. Fadi Karameh, fadi.karameh@bristol.ac.uk
+}
 
-\institute[shortinst]{University of Bristol, Dept. of Engineering}
+\date{}
+
+\institute[shortinst]{
+  \Large University of Bristol, Dept. of Engineering}
 
 \newcommand{\beamerblocknoheader}{
   \setbeamertemplate{block begin}{
@@ -133,7 +144,8 @@
 
 
 \abovefooter{
-  % \hfill\includegraphics[height=9ex]{uoblogo.png}
+  \hfill\includegraphics[height=10ex]{../common/graphics/uob-logo-transparent.png}
+  \hspace*{1ex}\includegraphics[height=9ex]{../common/graphics/demonstration-link.png}
 }
 % (can be left out to remove footer)
 
