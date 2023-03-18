@@ -17,6 +17,7 @@ dist
 !*.pdf
 *.gz
 *.synctex.*
+*.synctex(busy)
 
 # Ignore python cache
 __pycache__
@@ -58,3 +59,6 @@ comet_ml.json
 !.gitignore
 !.gitkeep
 !.vscode
+
+# ???
+*.Identifier
