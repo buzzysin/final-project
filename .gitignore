@@ -29,8 +29,16 @@ __pycache__
 *.png
 *.jpg
 *.jpeg
+*.svg
 *.webm
 *.mp4
+!documents/**/*.png
+!documents/**/*.jpg
+!documents/**/*.jpeg
+!documents/**/*.svg
+!documents/**/*.webm
+!documents/**/*.mp4
+
 
 # YOLO
 **/runs
