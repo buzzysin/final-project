@@ -1,0 +1,1 @@
+{"rule":"COMMA_PERIOD_CONFUSION","sentence":"^\\QClass Precision Recall F1 Score mAP@0.5 Resistor 0.00 0.00 0.00 0.00 DC Voltage Source 0.00 0.00 0.00 0.00 Ground 0.00 0.00 0.00 0.00 Overall 0.982 1.000 0.00 0.00 Accuracy metrics for each class\\E$"}

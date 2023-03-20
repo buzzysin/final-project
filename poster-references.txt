@@ -1,0 +1,12 @@
+[1] C. F. Moreno-García, E. Elyan, and C. Jayne, “New trends on digitisation of complex engineering drawings,” Neural
+Computing and Applications, vol. 31, no. 6, pp. 1695–1712, Jun 2019. [Online]. Available:
+https://doi.org/10.1007/s00521-018-3583-1
+[2] S. W. Zamora and A. E. Eyrún, “Circuitboard: Sketch-based circuit design and analysis,” in IUI Workshop on Sketch
+Recognition, 2009.
+[3] M. Moetesum, S. W. Younus, M. A. Warsi, and I. Siddiqi, “Segmentation and recognition of electronic components in
+hand-drawn circuit diagrams,” EAI Endorsed Trans. Scalable Inf. Syst., vol. 5, p. e12, 2018.
+[4] R. R. Rachala and M. R. Panicker, “Hand-drawn electrical circuit recognition using object detection and node recognition,”
+SN Computer Science, vol. 3, no. 3, p. 244, Apr 2022. [Online]. Available: https://doi.org/10.1007/s42979-022-01159-0
+[5] M. Dey, S. M. Mia, N. Sarkar, A. Bhattacharya, S. Roy, S. Malakar, and R. Sarkar, “A two-stage cnn-based hand-drawn
+electrical and electronic circuit component recognition system,” Neural Computing and Applications, vol. 33, no. 20, pp.
+13 367–13 390, Oct 2021. [Online]. Available: https://doi.org/10.1007/s00521-021-05964-1
