@@ -1,0 +1,330 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=2.5cm,bottom=2.5cm,left=2cm,right=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[acronym]{glossaries}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\setlist[itemize]{noitemsep,nolistsep}
+\setlist[enumerate]{noitemsep,nolistsep}
+
+\hypersetup{
+  colorlinks,
+  linkcolor={black!40!black},
+  urlcolor={blue!40!black},
+  citecolor={blue!40!black}
+}
+
+\makenoidxglossaries
+\newacronym{SPICE}{SPICE}{Simulation Program with Integrated Circuit Emphasis}
+\newacronym{CAD}{CAD}{Computer-aided Design}
+\newacronym{SDK}{SDK}{Software Development Kit}
+\newacronym{AR}{AR}{augmented reality}
+\newacronym{VR}{VR}{virtual reality}
+\newacronym{GUI}{GUI}{graphical user interface}
+\newacronym{NN}{NN}{neural network}
+\newacronym{CNN}{CNN}{convolutional neural network}
+\newacronym{HDL}{HDL}{hardware description language}
+
+\title{Designing a Sketch-Based Interface for Electronic Circuit Simulation}
+\author{Taharka Okai}
+\date{April 2023}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vfill
+        \includegraphics[width={0.7\textwidth}]{../graphics/university-of-bristol-logo-png-transparent}
+
+        \vfill
+        {\Huge{Designing a Sketch-based Interface for Electronic Circuit Simulation}}
+
+        \vfill
+        {\Large\textbf{Taharka Okai}}
+
+        \vspace{1cm}
+        {\Large{\textbf{April 2023}}}
+
+        \vfill
+
+        \vspace{1cm}
+        {\Large{Final year project thesis submitted in support of the
+                degree of Master of Engineering in Computer Science and Electronics}}
+
+        \vspace{1cm}
+        {\Large{Department of Electrical \& Electronic Engineering}}
+
+        {\Large{University of Bristol}}
+    \end{center}
+\end{titlepage}
+
+% \begin{figure*}[hptb]
+%     \centering
+%     \includegraphics[width={0.7\textwidth}]{../graphics/university-of-bristol-logo-png-transparent}
+% \end{figure*}
+
+\thispagestyle{empty}
+\setcounter{page}{1}
+
+\pagebreak
+\tableofcontents
+\printnoidxglossary[type=\acronymtype,title=List of Acronyms]
+
+\pagebreak
+\begin{abstract}
+
+\end{abstract}
+
+\pagebreak
+\section{Introduction}
+\label{Introduction}
+
+\pagebreak
+\section{Related Work and Key References}
+\label{subsec:Related Work and Key References}
+
+\subsection{Data Acquisition, Input and Processing}
+\label{subsec:Data Acquisition, Input and Processing}
+
+The paper by Bonnici et al. \cite{101017S} is a review paper that defines the landscape of sketch-based
+interfaces, with an emphasis on mechanical systems. They list the challenges faced with such approaches,
+and solutions taken by various authors. In particular, they provide a helpful categorisation of input acquisition
+and processing techniques. They define `Paper Sketches' and `Digital Sketches' which are input techniques that
+use digital images captured of a non-electronic sketch (i.e., with pen or pencil on paper) and otherwise
+direct digital input by the use of a peripheral device (i.e., with a digital pen or touch screen).
+
+With regard to processing, Bonnici et al. describe the pipeline of image processing for each input approach, which
+broadly falls into the following order: Binarisation, Vectorisation and Interpretation. These refer to distinguishing
+foreground from background elements, smoothing line strokes and creating a physical system respectively.
+
+In the paper by Costa et al. \cite{109781I}, they present SketchyDynamics, an application that takes in
+user input sketches via a touch screen, builds a system from the sketch and allows simulation of that system.
+They did not need to acquire any data to interpret user input as they use a gesture recogniser known as CALI
+to turn user sketches into shapes, interpreted as simulation primitives. They also did not need to have significant
+development time dedicated to processing the system as they used the Box2D physics engine, which is a rigid
+body simulation library for games.
+
+Hu et al., \cite{6274802} use a game engine, Unity3D, and the accompanying physics tools it provides to create a
+mechanical system simulation. As such, they do not provide a means of data acquisition and input, as the systems
+and the entities within are 3D modelled in a separate software, 3dmax. However, this reveals the issue of decoupling in
+mechanical physical simulations -- the simulator and 3D modelling steps are separate and often require separate software.
+
+Bergig et al. \cite{5336490} present a software project that can `analyse, visualise and simulate mechanical system in 3D'.
+They capture input from a webcam and display it to the user. This is an example of a `Paper Sketch' implementation, as the
+sketch system is prepared on a non-digital medium. They make use of orthographic projection techniques to produce simple systems
+of the sketches. Rotations, forces, friction and other physical properties are inferred from annotations on the diagram, a feature
+unique to this paper.
+
+Pichiliani et al. \cite{5460522} recognise the ease of sketching in the design phase of physical concept and discuss
+the use of `Digital Ink' applications, which is an example of the `Digital Sketches' concept mentioned in the review in
+\cite{101017S}. They also propose collaborative input, where multiple engineers can contribute to a schematic at the same
+time. While this is a useful feature, it is not within scope of the current project and could be considered for future
+work. Their input method uses the Microsoft Tablet \gls{SDK} which was shared under a licence agreement. With this, they
+are able to construct basic shapes for which to do 2D mechanical simulations.
+
+Fang et al., \cite{4722231} present Sketch3D, which also uses a digital interface in order to retrieve user sketches.
+They process the data by using a curve estimation algorithm which involves preprocessing the strokes on the screen, finding
+key points, recognising primitives (shapes), and reconstruction.
+
+\subsection{Electronic Systems}
+\label{subsec:Electronic Systems}
+
+There are a variety of robust electronic simulation tools such as Micro-Cap, AWR Design Environment, \gls{SPICE}-based
+tools such as LTSpice and more \cite{web:micro-cap,web:awrde,web:ltspice}. However, each of the input modes provided by
+these applications do not include sketch-based user input. Despite that, their powerful simulation capabilities make them
+useful to apply to this project, in terms of the algorithms required to simulate a given system and produce time-based output.
+
+For a more targeted case study, SIMULINK uses a drag-and-drop type interface to build block diagrams of electronic systems
+\cite{web:simulink}. This approach removes any need to code and is similar in the approaches
+taken by the aforementioned electronic system simulation tools. It also provides the ability to link the input and output of
+models together for use in more complex systems, which allows for a modular design approach.
+
+Certain \gls{SPICE}-based tools are able to import and export a circuit description file, or netlist \cite{web:cadence-pspice}. It may be possible,
+then, to offload simulation tasks to pre-existing software. This turns the problem of sketch-based simulation into generating a
+valid circuit description that can be used by an external program. This technique is apparent in the web-based
+tool developed by Kadlec et al. \cite{5432817}, where they allow users to edit subcircuit parameters directly in the model description.
+Also in this paper, the authors describe the architecture of their software tool, where, instead of a sketch-based interface, there is a
+graphical user interface accessible through a web browser.
+
+To avoid the introduction of any dependency on external software, this can instead be implemented directly, with the algorithms used
+by \gls{SPICE}-based tools, which involves a combination of nodal analysis and numerical methods to solve the system of equations defined
+by the netlist \cite{web:spice-algorithm,book:circuit-simulation}.
+
+\subsection{Concept-Adjacent Success}
+\label{subsec:Concept-Adjacent Success}
+
+In markedly similar projects to this one proposed, such the one presented by Zamora et al. \cite{20090001}, there is a successful implementation
+of a sketch-based simulation tool for logic circuits. They make use of digital sketching as their interface and employ a recognition
+pipeline in the model generation process. They describe the segmentation of input strokes, then the interpretation of these strokes
+into primitives, which for this project are a set of logic gates. Once the primitives have been defined in the sketch using a classifier,
+then the circuit is evaluated which is an underlying node graph representation. This is one such example that makes use of the techniques
+described in the prior sections and represents an outcome similar to the aims of this project.
+
+Similarly, with the project by Alvarado et al. \cite{9155937}, they also include error correction to primitives which attempt to improve
+the input sketch, by notifying the user that endpoints are not properly connected, for example.
+
+The project presented by Dreijer \cite{dreijer}, they produce an idealised version of the type of tool that this project
+is aiming to produce, using digital ink as their medium. Their implementation consists of a drawing process that accepts strokes
+until a symbol has been created before creating a new symbol, a clustering process that identifies symbols by finding certain types
+of line intersection types within a specific region, and a design for a format of a circuit description, similar to \gls{SPICE}-based
+netlist files.
+
+Finally, the project described by Majeed et al. \cite{191016} takes the ideas by Dreijer and compare a variety of machine learning and deep
+learning tactics, producing Sketic. Notably, they highlight the fact that deep learning approaches implicitly extract features from the user's
+sketches, decreasing the dependency on image preprocessing. When compared with a \gls{CNN} classifier over a regular \gls{NN} classifier, they
+tout improved accuracy and speed, at the cost of additional overhead that scales with the complexity of the input diagram. Additionally,
+their software tool has the ability to produce \gls{HDL} code (in the form of Verilog \cite{8299595}) for the logic circuits defined in the sketch, which is a direct analogue to
+producing a netlist for an electronics circuit developed using a \gls{SPICE} tool. This paper is the most recent
+one researched with high relevancy (2020), making use of modern techniques and advancements in the field that some older papers mentioned have not demonstrated.
+
+\subsection{Research Summary}
+\label{subsec:Research Summary}
+
+Table~\ref{tab:Table of research summaries} contains relevant papers discussed prior, and their estimated utility as a foundation for this project.
+This table uses a Relevance vs. Risk evaluation to rank each paper's contribution to the background knowledge behind this research
+topic. Relevance describes the amount of directly applicable content the paper has, and Risk is a factor describing complexity
+(high = low risk).
+
+The preliminary research conducted in the above section has yielded the following useful information:
+
+\begin{itemize}
+    \item Considerations required for different input media types,
+    \item Separate challenges faced simulation electronic and mechanical systems,
+    \item Challenges faced when processing sketches generating primitives,
+    \item Processes of generating a model from a sketch using various classification algorithms,
+    \item Methods of simulating a model using numerical methods,
+    \item Potential to offload simulation tasks to an external program,
+    \item A set of concept-adjacent and concept-aligned software tools as a potential basis.
+\end{itemize}
+
+\begin{table}[htpb]
+    \footnotesize\centering
+    \begin{tabular}{
+        @{}
+        l
+        >{\raggedright\arraybackslash}p{7cm}
+        l
+        @{}
+        }
+        Paper                                                  &
+        Summary                                                  \\
+        \midrule
+        Where do we stand? Bonnici et al. \cite{101017S}       &
+        Review: processing sketches, input/model classification  \\
+        \\
+
+        SketchyDynamics, Costa et al. \cite{109781I}           &
+        A novel sketch-based approach, mechanics simulator       \\
+        \\
+
+        Unity3D approach, Hu et al. \cite{6274802}             &
+        Using Unity3D game engine for simulation, no sketching   \\
+        \\
+
+        \Gls{AR}/\gls{VR}, Bergig et al. \cite{5336490}        &
+        Mechanics simulator with \gls{AR}/\gls{VR} capabilities  \\
+        \\
+
+        Collaborative Design, Pichiliani et al. \cite{5460522} &
+        Collaborative sketch-based mechanics simulator           \\
+        \\
+
+        Sketch3D, Fang et al. \cite{4722231}                   &
+        Mechanics simulator, sketch processing techniques        \\
+        \\
+
+        Internet-based Sketch Tool, Hu et al. \cite{5432817}   &
+        Electronic system simulator hosted online                \\
+        \\
+
+        CircuitBoard, Zamora et al. \cite{20090001}            &
+        Sketch-based logic simulator                             \\
+        \\
+
+        LogiSketch, Alvarado et al. \cite{9155937}             &
+        Sketch-based logic simulator                             \\
+        \\
+
+        Electronics model generator, Dreijer \cite{dreijer}    &
+        Sketch-based electronics model generator with detailed
+        input processing techniques                              \\
+        \\
+
+        Sketic, Majeed et al. \cite{191016}                    &
+        Sketch-based electronics model simulator making use of
+        \gls{CNN}s and VHDL code generation                      \\
+        \\
+    \end{tabular}
+    \caption[Table of research summaries]{
+        Table of research summaries.}
+    \label{tab:Table of research summaries}
+\end{table}
+
+
+\pagebreak
+\section{Method}
+\label{sec:Method}
+
+\subsection{Resource Requirements}
+\label{subsec:Resource Requirements}
+
+The following table (Table \ref{tab:Table of project resources}) summarises the expected resource list for this
+project.
+
+\begin{table}[hptb]
+    \footnotesize\centering
+    \begin{tabular}{
+        @{}
+        >{\raggedright\arraybackslash}p{5cm}
+        >{\raggedright\arraybackslash}p{2cm}
+        >{\raggedright\arraybackslash}p{5cm}
+        >{\raggedright\arraybackslash}p{4cm}
+        @{}}
+        Resource                               & Type     & Description                                        & Availability                          \\
+        \toprule
+        Workstation                            & Hardware & For computation and compilation                    & Own or Laboratory                     \\
+        Smartphone or Tablet (with camera)     & Hardware & For development, testing and demonstration         & Own or Laboratory                     \\
+                                               &          &                                                    &                                       \\
+        Machine/Deep Learning Tools            & Software & Development library, e.g. PyTorch                  & Online                                \\
+        Image Processing Tools                 & Software & Development library, e.g. OpenCV                   & Online                                \\
+        Software Development Kit and framework & Software & Cross-platform development, e.g. Flutter           & Online                                \\
+        Mobile Device emulator                 & Software & E.g. Android Studio for cross-platform development & Online                                \\
+                                               &          &                                                    &                                       \\
+        Labelled data set                      & Misc     & For training the sketch-to-system model            & Own or Office Supplies                \\
+        Circuit Simulation Guide               & Misc     & Insight into the algorithms used in simulation     & Bristol University Library (Acquired) \\
+    \end{tabular}
+    \caption{Table of project resources}
+    \label{tab:Table of project resources}
+\end{table}
+
+\pagebreak
+\section{Results}
+\label{sec:Results}
+
+\pagebreak
+\section{Discussion}
+\label{sec:Discussion}
+
+\pagebreak
+\section{Conclusion}
+\label{sec:Conclusion}
+
+\pagebreak
+\bibliographystyle{IEEEtran}
+{\raggedright \bibliography{project}}
+
+\end{document}

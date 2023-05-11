@@ -1,0 +1,15 @@
+# Hidden files
+.*
+!.gitignore
+!.vscode
+
+# Latex
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz*
+*.toc
